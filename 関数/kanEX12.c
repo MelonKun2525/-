@@ -9,11 +9,11 @@ void main(void){
 
   int a, b, method, result;
 
-  printf("1‚Â–Ú=>");
+  printf("1ã¤ç›®=>");
   scanf("%d", &a);
-  printf("2‚Â–Ú=>");
+  printf("2ã¤ç›®=>");
   scanf("%d", &b);
-  printf("ŒvZ•û–@‚ğ“ü—Í(Š|‚¯Z:1, ‘«‚µZ:2)=>");
+  printf("è¨ˆç®—æ–¹æ³•ã‚’å…¥åŠ›(æ›ã‘ç®—:1, è¶³ã—ç®—:2)=>");
   scanf("%d", &method);
   judge(a, b, method);
 
@@ -33,7 +33,7 @@ int multiplication(int x, int y){
 
 void output(int x){
 
-  printf("Œ‹‰Êy %d z\n", x);
+  printf("çµæœã€ %d ã€‘\n", x);
 
 }
 
@@ -46,6 +46,6 @@ void judge(int x, int y, int z){
     output(addition(x, y));
 
   else
-    printf("1 ‚Ü‚½‚Í 2 ‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢B\n");
+    printf("1 ã¾ãŸã¯ 2 ã‚’é¸ã‚“ã§ãã ã•ã„ã€‚\n");
 
 }
