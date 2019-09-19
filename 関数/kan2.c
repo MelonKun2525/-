@@ -1,19 +1,17 @@
 #include<stdio.h>
 
-void new2(int, int*); // 第1引数に処理回数, 第2引数に配列のアドレス。
+int new2(void);
 
 void main(void){
 
-  int i, hai[4], *p;
-
-  p = hai;
+  int i, hai[4];
 
   printf("入力\n");
 
   for(i = 0; i < 4; i ++){
 
-    new2(i + 1, p);
-    p ++;
+    printf("%dつ目=", i + 1);
+    hai[i] = new2();
 
   }
 
@@ -24,13 +22,12 @@ void main(void){
 
 }
 
-void new2(int count, int *hai){
+int new2(void){
 
   int input;
 
-  printf("%dつ目=", count);
   scanf("%d", &input);
 
-  *hai = input * 2;
+  return input * 2;
 
 }
