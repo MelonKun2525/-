@@ -6,14 +6,14 @@ void main(void){
 
   float a, b, min;
 
-  printf("ˆê‚Â–Ú“ü—Í=>");
+  printf("ä¸€ã¤ç›®å…¥åŠ›=>");
   scanf("%f", &a);
-  printf("“ñ‚Â–Ú“ü—Í=>");
+  printf("äºŒã¤ç›®å…¥åŠ›=>");
   scanf("%f", &b);
 
   min = judge(a, b);
 
-  printf("¬‚³‚¢‚Ì‚Í %.1f ‚Å‚·B\n", min);
+  printf("å°ã•ã„ã®ã¯ %.1f ã§ã™ã€‚\n", min);
 
 }
 
