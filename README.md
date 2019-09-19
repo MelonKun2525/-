@@ -1,2 +1,2 @@
 # ProgrammingTechnology
-プロ技課題を投げとくよ。
+プロ技の課題を投げとくよ。
