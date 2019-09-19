@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void new2(int, int*); // ‘æ1ˆø”‚Éˆ—‰ñ”, ‘æ2ˆø”‚É”z—ñ‚ÌƒAƒhƒŒƒXB
+void new2(int, int*); // ç¬¬1å¼•æ•°ã«å‡¦ç†å›æ•°, ç¬¬2å¼•æ•°ã«é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
 
 void main(void){
 
@@ -8,7 +8,7 @@ void main(void){
 
   p = hai;
 
-  printf("“ü—Í\n");
+  printf("å…¥åŠ›\n");
 
   for(i = 0; i < 4; i ++){
 
@@ -17,7 +17,7 @@ void main(void){
 
   }
 
-  printf("Œ‹‰Ê\n");
+  printf("çµæœ\n");
 
   for(i = 0; i < 4; i ++)
     printf("hai[%d]=%d\n", i, hai[i]);
@@ -28,7 +28,7 @@ void new2(int count, int *hai){
 
   int input;
 
-  printf("%d‚Â–Ú=", count);
+  printf("%dã¤ç›®=", count);
   scanf("%d", &input);
 
   *hai = input * 2;
