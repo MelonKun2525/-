@@ -13,30 +13,30 @@ struct pokemon{
 int main(void){
 
   struct pokemon nakama[4] = {
-    {1, "ƒsƒJƒ`ƒ…ƒE", 100, 67, 60},
-    {2, "ƒ‹ƒMƒA", 250, 120, 101},
-    {3, "ƒGƒ‹ƒt[ƒ“", 89, 60, 50},
-    {4, "ƒzƒGƒ‹ƒz[", 358, 123, 45}
+    {1, "ãƒ”ã‚«ãƒãƒ¥ã‚¦", 100, 67, 60},
+    {2, "ãƒ«ã‚®ã‚¢", 250, 120, 101},
+    {3, "ã‚¨ãƒ«ãƒ•ãƒ¼ãƒ³", 89, 60, 50},
+    {4, "ãƒ›ã‚¨ãƒ«ãƒ›ãƒ¼", 358, 123, 45}
   };
   int in;
 
-  printf("”Ô†‚ğ“ü—Í=>");
+  printf("ç•ªå·ã‚’å…¥åŠ›=>");
   scanf("%d", &in);
 
   if(in >= 1 && in <= 4){
 
-    printf("–¼‘O:%s ", nakama[in - 1].name);
+    printf("åå‰:%s ", nakama[in - 1].name);
     printf("HP:%d ", nakama[in - 1].hp);
     printf("ATK:%d ", nakama[in - 1].atk);
     printf("DEF:%d\n", nakama[in - 1].def);
 
   }else{
 
-    printf("‚»‚Ì”Ô†‚Í‘¶İ‚µ‚Ü‚¹‚ñB\n");
+    printf("ãã®ç•ªå·ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚\n");
 
   }
 
-  printf("I—¹‚µ‚Ü‚·B\n");
+  printf("çµ‚äº†ã—ã¾ã™ã€‚\n");
 
   return 0;
 
