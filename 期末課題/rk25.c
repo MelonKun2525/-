@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 
 int main(void){
 
@@ -6,13 +6,13 @@ int main(void){
 
   for(; in != 999;){
 
-    printf("”’l“ü—Í=>");
+    printf("æ•°å€¤å…¥åŠ›=>");
     scanf("%d", &in);
     re += in;
 
   }
 
-  printf("‡Œv‚Í%d‚Å‚·B\n", re);
+  printf("åˆè¨ˆã¯%dã§ã™ã€‚\n", re);
 
   return 0;
 

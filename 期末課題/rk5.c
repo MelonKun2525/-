@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 
 int sub(void);
 
@@ -6,11 +6,11 @@ int main(void){
 
   int sum;
 
-  printf("‰ÁZŠJn‚µ‚Ü‚·\n");
+  printf("åŠ ç®—é–‹å§‹ã—ã¾ã™\n");
 
   sum = sub();
 
-  printf("ÅIŒ‹‰Ê‚Í%d‚Å‚·\n", sum);
+  printf("æœ€çµ‚çµæœã¯%dã§ã™\n", sum);
 
   return 0;
 
@@ -22,7 +22,7 @@ int sub(void){
 
   while(1){
 
-    printf("1E2E3E4E5‚Ì”’l‚ğ“ü—Í@0‚ÅI—¹\n");
+    printf("1ãƒ»2ãƒ»3ãƒ»4ãƒ»5ã®æ•°å€¤ã‚’å…¥åŠ›ã€€0ã§çµ‚äº†\n");
     printf(">");
     scanf("%d", &in);
 
@@ -39,13 +39,13 @@ int sub(void){
       case 5:
 
         sum += in;
-        printf("%d‚ğ‰ÁZ‚µ‚Ü‚µ‚½\n", in);
+        printf("%dã‚’åŠ ç®—ã—ã¾ã—ãŸ\n", in);
 
         break;
 
       default:
 
-        printf("1`5 ‚Ü‚½‚Í 0 ‚Ì”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
+        printf("1ï½5 ã¾ãŸã¯ 0 ã®æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„\n");
 
     }
   }

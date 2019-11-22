@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 
 int main(void){
 
@@ -8,14 +8,14 @@ int main(void){
 
   do{
 
-    printf("”’l“ü—Í=>");
+    printf("æ•°å€¤å…¥åŠ›=>");
     scanf("%d", &in);
 
     *pe = *pe + in;
 
   }while(in != 999);
 
-  printf("‡Œv‚Í%d‚Å‚·B\n", *pe);
+  printf("åˆè¨ˆã¯%dã§ã™ã€‚\n", *pe);
 
   return 0;
 

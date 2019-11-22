@@ -1,31 +1,31 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 
 int main(void){
 
   int in, sum = 0;
 
-  printf("‰ÁŽZŠJŽn‚µ‚Ü‚·\n");
+  printf("åŠ ç®—é–‹å§‹ã—ã¾ã™\n");
 
   while(1){
 
-    printf("1E2E3E4E5‚Ì”’l‚ð“ü—Í@0‚ÅI—¹\n");
+    printf("1ãƒ»2ãƒ»3ãƒ»4ãƒ»5ã®æ•°å€¤ã‚’å…¥åŠ›ã€€0ã§çµ‚äº†\n");
     printf(">");
     scanf("%d", &in);
 
     if(in == 0){
 
-      printf("ÅIŒ‹‰Ê‚Í%d‚Å‚·\n", sum);
+      printf("æœ€çµ‚çµæžœã¯%dã§ã™\n", sum);
 
       return 0;
 
     }else if(in >= 1 && in <= 5){
 
       sum += in;
-      printf("%d‚ð‰ÁŽZ‚µ‚Ü‚µ‚½\n", in);
+      printf("%dã‚’åŠ ç®—ã—ã¾ã—ãŸ\n", in);
 
     }else{
 
-      printf("1`5 ‚Ü‚½‚Í 0 ‚Ì”’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
+      printf("1ï½ž5 ã¾ãŸã¯ 0 ã®æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„\n");
 
     }
   }
