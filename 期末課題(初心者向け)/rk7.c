@@ -1,4 +1,4 @@
-#include<stdio.h>
+﻿#include<stdio.h>
 
 int main(void){
 
@@ -7,10 +7,10 @@ int main(void){
   for(i = 1; i <= 4; i++){
 
     for(j = 4 - i; j > 0; j--)
-      printf("@");
+      printf("　");
 
     for(j = i; j > 0; j--)
-      printf("–");
+      printf("＊");
 
     printf("\n");
 
