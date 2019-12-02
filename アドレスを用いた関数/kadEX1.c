@@ -1,8 +1,8 @@
 #include<stdio.h>
 
-void roup(int*);
-void input(int*);
-void twice(int*);
+void roup(int*); //くり返し用の関数だヨ！
+void input(int*); //入力処理用の関数だヨ！
+void twice(int*); //二倍の処理をする関数だヨ！
 
 int main(void){
 
