@@ -5,7 +5,7 @@ int roup(int);
 
 int main(void){
 
-  int re = -999;
+  int re = 0;
 
   re = roup(re);
 
@@ -23,16 +23,16 @@ int addition(int in, int re){
 
 int roup(int re){
 
-  int in;
+  int in = 0;
 
-  do{
+  while(in != 999){
+
+    re = addition(in, re);
 
     printf("数値入力=>");
     scanf("%d", &in);
 
-    re = addition(in, re);
-
-  }while(in != 999);
+  }
 
   return re;
 
