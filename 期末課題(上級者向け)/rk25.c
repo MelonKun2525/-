@@ -2,13 +2,14 @@
 
 int main(void){
 
-  int in = 0, re = -999;
+  int in = 0, re = 0;
 
   for(; in != 999;){
 
+    re += in;
+
     printf("数値入力=>");
     scanf("%d", &in);
-    re += in;
 
   }
 
