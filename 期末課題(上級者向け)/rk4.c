@@ -2,18 +2,18 @@
 
 int main(void){
 
-  int in, re = -999, *pe;
+  int in = 0, re = 0, *pe;
 
   pe = &re;
 
-  do{
+  while(in != 999){
+
+    *pe = *pe + in;
 
     printf("数値入力=>");
     scanf("%d", &in);
 
-    *pe = *pe + in;
-
-  }while(in != 999);
+  }
 
   printf("合計は%dです。\n", *pe);
 
