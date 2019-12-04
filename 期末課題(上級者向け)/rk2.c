@@ -2,7 +2,7 @@
 
 int main(void){
 
-  int in, re = -999;
+  int in = 0, re = 0;
 
   while(in != 999){
 
