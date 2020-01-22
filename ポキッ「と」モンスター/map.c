@@ -3,18 +3,18 @@
 #include<conio.h>
 #include<windows.h>
 
-int x = 1, y = 1; //ƒvƒŒƒCƒ„[À•W
+int x = 1, y = 1; //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™
 int key(void);
 
 int main(void){
 
-  int i, j, chr, result = 0; //ƒVƒXƒeƒ€‚ÉŠÖ‚·‚é•Ï”
+  int i, j, chr, result = 0; //ã‚·ã‚¹ãƒ†ãƒ ã«é–¢ã™ã‚‹å¤‰æ•°
   char map[25][102];
   FILE *map1;
 
   if((map1 = fopen("Map1.txt", "r")) == NULL){
 
-    printf("yƒGƒ‰[: ƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ª“Ç‚İ‚ß‚Ü‚¹‚ñ‚Å‚µ‚½Bz");
+    printf("ã€ã‚¨ãƒ©ãƒ¼: ãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ãŒèª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚ã€‘");
     return 1;
 
   }
@@ -95,8 +95,6 @@ int key(void){
       break;
 
   }
-
-  printf("%d", in);
 
   return 0;
 
