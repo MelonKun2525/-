@@ -1,16 +1,18 @@
-#include<stdio.h>
+﻿#include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
 #include<windows.h>
 
 int x = 1, y = 1; //プレイヤー座標
+char map[25][101];
+FILE *map1;
+
 int key(void);
+int playerMove(int, int);
 
 int main(void){
 
   int i, j, chr, result = 0; //システムに関する変数
-  char map[25][102];
-  FILE *map1;
 
   if((map1 = fopen("Map1.txt", "r")) == NULL){
 
@@ -42,6 +44,8 @@ int main(void){
       }
     }
 
+    printf("\n\n\n\t\t\t\tO:プレイヤー S:スタート G:ゴール ESC:終了\n");
+
     result = key();
 
   }
@@ -72,29 +76,55 @@ int key(void){
 
     case 72:
 
-      y -= 1;
+      playerMove(0, -1);
 
       break;
 
     case 80:
 
-      y += 1;
+      playerMove(0, 1);
 
       break;
 
     case 77:
 
-      x += 1;
+      playerMove(1, 0);
 
       break;
 
     case 75:
 
-      x -= 1;
+      playerMove(-1, 0);
 
       break;
 
   }
+
+  return 0;
+
+}
+
+int playerMove(int changeX, int changeY){
+
+  switch(map[y + changeY][x + changeX]){
+
+    case '=':
+    case '|':
+
+      return 1;
+
+    case 'G':
+
+      system("cls");
+      printf("\n\n\n\n\n\t\t\t\t\t\tゴール！！\n");
+      getch();
+      system("cls");
+      exit(0);
+
+  }
+
+  x += changeX;
+  y += changeY;
 
   return 0;
 
