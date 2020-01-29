@@ -1,4 +1,4 @@
-ï»¿#include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
@@ -60,18 +60,18 @@ int PrintPlayerData(void){
   if(!IsLoaded)
     return 1;
 
-  printf("åå‰: %s\n", player.name);
+  printf("–¼‘O: %s\n", player.name);
   printf("ID: %d\n", player.id);
 
   for(i = 0; i < 6; i ++){
 
-    printf("ãƒã‚­ãƒ¢ãƒ³%d:\n", i + 1);
+    printf("ƒ|ƒLƒ‚ƒ“%d:\n", i + 1);
     printf("\tID: %d\n", player.pokimon[i].id);
-    printf("\tåå‰: %s\n", player.pokimon[i].name);
-    printf("\tãƒ¬ãƒ™ãƒ«: %d\n", player.pokimon[i].lv);
-    printf("\tæ”»æ’ƒåŠ›: %d\n", player.pokimon[i].atk);
-    printf("\té˜²å¾¡åŠ›: %d\n", player.pokimon[i].def);
-    printf("\tä½“åŠ›: %d\n", player.pokimon[i].hp);
+    printf("\t–¼‘O: %s\n", player.pokimon[i].name);
+    printf("\tƒŒƒxƒ‹: %d\n", player.pokimon[i].lv);
+    printf("\tUŒ‚—Í: %d\n", player.pokimon[i].atk);
+    printf("\t–hŒä—Í: %d\n", player.pokimon[i].def);
+    printf("\t‘Ì—Í: %d\n", player.pokimon[i].hp);
 
   }
 
@@ -87,5 +87,6 @@ int SavePlayerData(void){
   if(!IsLoaded)
     return 1;
 
-  fprintf()
+  // “r’†EEE
+
 }
