@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
@@ -19,12 +19,12 @@ static struct players{
   struct pokimons pokimon[6];
 }player;
 
-/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
+/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
 int CreatePlayerData(char*);
 int LoadPlayerData(int);
 int PrintPlayerData(void);
 int SavePlayerData(void);
-/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
+/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
 
 int CreatePlayerData(char *name){
 
@@ -91,17 +91,17 @@ int PrintPlayerData(void){
     return 1;
 
   printf("ID: %d\n", player.id);
-  printf("–¼‘O: %s\n", player.name);
+  printf("åå‰: %s\n", player.name);
 
   for(i = 0; i < 6; i ++){
 
-    printf("ƒ|ƒLƒ‚ƒ“%d:\n", i + 1);
+    printf("ãƒã‚­ãƒ¢ãƒ³%d:\n", i + 1);
     printf("\tID: %d\n", player.pokimon[i].id);
-    printf("\t–¼‘O: %s\n", player.pokimon[i].name);
-    printf("\tƒŒƒxƒ‹: %d\n", player.pokimon[i].lv);
-    printf("\tUŒ‚—Í: %d\n", player.pokimon[i].atk);
-    printf("\t–hŒä—Í: %d\n", player.pokimon[i].def);
-    printf("\t‘Ì—Í: %d\n", player.pokimon[i].hp);
+    printf("\tåå‰: %s\n", player.pokimon[i].name);
+    printf("\tãƒ¬ãƒ™ãƒ«: %d\n", player.pokimon[i].lv);
+    printf("\tæ”»æ’ƒåŠ›: %d\n", player.pokimon[i].atk);
+    printf("\té˜²å¾¡åŠ›: %d\n", player.pokimon[i].def);
+    printf("\tä½“åŠ›: %d\n", player.pokimon[i].hp);
 
   }
 
