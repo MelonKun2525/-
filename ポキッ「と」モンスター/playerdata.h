@@ -2,6 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 
+#define SUCCESS 0
+#define FAILED -1
+
 static int IsLoaded = 0;
 
 static struct pokimons{
@@ -21,19 +24,46 @@ static struct players{
 
 /* プロトタイプ宣言 */
 int CreatePlayerData(char*);
+int GetPlayerId(void);
+char GetPlayerName(void);
+int GetPokimonId(int);
+char GetPokimonName(int);
+int GetPokimonLv(int);
+int GetPokimonAtk(int);
+int GetPokimonDef(int);
+int GetPokimonHp(int);
 int LoadPlayerData(int);
 int PrintPlayerData(void);
 int SavePlayerData(void);
+int SetPlayerId(int);
+int SetPlayerName(char*);
+int SetPokimonId(int, int);
+int SetPokimonName(int, char*);
+int SetPokimonLv(int, int);
+int SetPokimonAtk(int, int);
+int SetPokimonDef(int, int);
+int SetPokimonHp(int, int);
 /* プロトタイプ宣言 */
 
 int CreatePlayerData(char *name){
 
-  int id = 0, i;
+  int id = -1, i = 0;
+  char dummy[1];
+  FILE *fp;
 
-  while(LoadPlayerData(id) == 0)
-    id ++;
+  if((fp = fopen("players.txt", "r")) == NULL)
+    return FAILED;
 
-  player.id = id;
+  do{
+
+    fseek(fp, i * 264L, SEEK_SET);
+    i++;
+
+  }while(fscanf(fp, "%5d", &id) != EOF);
+
+  fclose(fp);
+
+  player.id = id + 1;
   strcpy(player.name, name);
 
   for(i = 0; i < 6; i ++){
@@ -48,8 +78,89 @@ int CreatePlayerData(char *name){
   }
 
   IsLoaded = 1;
-  SavePlayerData();
-  return 0;
+
+  if(SavePlayerData() == FAILED)
+    return FAILED;
+
+  return SUCCESS;
+
+}
+
+int GetPlayerId(void){
+
+  if(IsLoaded)
+    return player.id;
+
+  return FAILED;
+
+}
+
+char GetPlayerName(void){
+
+  if(IsLoaded)
+    return *player.name;
+
+  return FAILED;
+
+}
+
+int GetPokimonId(int index){
+
+  if(IsLoaded)
+    if(index >= 0 && index <= 5)
+      return player.pokimon[index].id;
+
+  return FAILED;
+
+}
+
+char GetPokimonName(int index){
+
+  if(IsLoaded)
+    if(index >= 0 && index <= 5)
+      return *player.pokimon[index].name;
+
+  return FAILED;
+
+}
+
+int GetPokimonLv(int index){
+
+  if(IsLoaded)
+    if(index >= 0 && index <= 5)
+      return player.pokimon[index].lv;
+
+  return FAILED;
+
+}
+
+int GetPokimonAtk(int index){
+
+  if(IsLoaded)
+    if(index >= 0 && index <= 5)
+      return player.pokimon[index].atk;
+
+  return FAILED;
+
+}
+
+int GetPokimonDef(int index){
+
+  if(IsLoaded)
+    if(index >= 0 && index <= 5)
+      return player.pokimon[index].def;
+
+  return FAILED;
+
+}
+
+int GetPokimonHp(int index){
+
+  if(IsLoaded)
+    if(index >= 0 && index <= 5)
+      return player.pokimon[index].hp;
+
+  return FAILED;
 
 }
 
@@ -58,7 +169,7 @@ int LoadPlayerData(int id){
   FILE *fp;
 
   if((fp = fopen("players.txt", "r")) == NULL)
-    return 1;
+    return FAILED;
 
   fseek(fp, id * 264L, SEEK_SET);
 
@@ -74,12 +185,12 @@ int LoadPlayerData(int id){
 
     IsLoaded = 1;
     fclose(fp);
-    return 0;
+    return SUCCESS;
 
   }
 
   fclose(fp);
-  return 1;
+  return FAILED;
 
 }
 
@@ -88,7 +199,7 @@ int PrintPlayerData(void){
   int i;
 
   if(!IsLoaded)
-    return 1;
+    return FAILED;
 
   printf("ID: %d\n", player.id);
   printf("名前: %s\n", player.name);
@@ -105,27 +216,26 @@ int PrintPlayerData(void){
 
   }
 
-  return 0;
+  return SUCCESS;
 
 }
 
 int SavePlayerData(void){
 
   int i;
-  char data[256] = {'\0'}, tmp[256]= {'\0'};
   FILE *fp;
 
   if(!IsLoaded)
-    return 1;
+    return FAILED;
 
-  if((fp = fopen("players.txt", "w")) == NULL)
-    return 1;
+  if((fp = fopen("players.txt", "r+")) == NULL)
+    return FAILED;
 
-  sprintf(data, "%5d%20s", player.id, player.name);
+  fseek(fp, player.id * 264L, SEEK_SET);
+  fprintf(fp, "%5d%20s", player.id, player.name);
 
-  for(i = 0; i < 6; i ++){
-
-    sprintf(tmp, "%5d%20s%5d%5d%5d%5d",
+  for(i = 0; i < 6; i++)
+    fprintf(fp, "%5d%20s%5d%5d%5d%5d",
       player.pokimon[i].id,
       player.pokimon[i].name,
       player.pokimon[i].lv,
@@ -133,16 +243,130 @@ int SavePlayerData(void){
       player.pokimon[i].def,
       player.pokimon[i].hp
     );
-    strcat(data, tmp);
 
-    if(i == 5)
-      strcat(data, "\n");
+  fclose(fp);
+  return SUCCESS;
+
+}
+
+int SetPlayerId(int id){
+
+  if(IsLoaded){
+
+    player.id = id;
+    return SUCCESS;
 
   }
 
-  fseek(fp, player.id * 264L, SEEK_SET);
-  fwrite(data, 264L, 1, fp);
-  fclose(fp);
-  return 0;
+  return FAILED;
+
+}
+
+int SetPlayerName(char *name){
+
+  if(IsLoaded){
+
+    strcpy(player.name, name);
+    return SUCCESS;
+
+  }
+
+  return FAILED;
+
+}
+
+int SetPokimonId(int index, int id){
+
+  if(IsLoaded){
+
+    if(index >= 0 && index <= 5){
+
+      player.pokimon[index].id = id;
+      return SUCCESS;
+
+    }
+  }
+
+  return FAILED;
+
+}
+
+int SetPokimonName(int index, char *name){
+
+  if(IsLoaded){
+
+    if(index >= 0 && index <= 5){
+
+      strcpy(player.pokimon[index].name, name);
+      return SUCCESS;
+
+    }
+  }
+
+  return FAILED;
+
+}
+
+int SetPokimonLv(int index, int lv){
+
+  if(IsLoaded){
+
+    if(index >= 0 && index <= 5){
+
+      player.pokimon[index].lv = lv;
+      return SUCCESS;
+
+    }
+  }
+
+  return FAILED;
+
+}
+
+int SetPokimonAtk(int index, int atk){
+
+  if(IsLoaded){
+
+    if(index >= 0 && index <= 5){
+
+      player.pokimon[index].atk = atk;
+      return SUCCESS;
+
+    }
+  }
+
+  return FAILED;
+
+}
+
+int SetPokimonDef(int index, int def){
+
+  if(IsLoaded){
+
+    if(index >= 0 && index <= 5){
+
+      player.pokimon[index].def = def;
+      return SUCCESS;
+
+    }
+  }
+
+  return FAILED;
+
+}
+
+int SetPokimonHp(int index, int hp){
+
+  if(IsLoaded){
+
+    if(index >= 0 && index <= 5){
+
+      player.pokimon[index].hp = hp;
+      return SUCCESS;
+
+    }
+  }
+
+  return FAILED;
 
 }
