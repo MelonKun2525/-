@@ -28,6 +28,8 @@ static struct players{
 int CreatePlayerData(char*);
 int GetPlayerId(void);
 char GetPlayerName(void);
+int GetPlayerX(void);
+int GetPlayerY(void);
 int GetPokimonId(int);
 char GetPokimonName(int);
 int GetPokimonLv(int);
@@ -39,6 +41,8 @@ int PrintPlayerData(void);
 int SavePlayerData(void);
 int SetPlayerId(int);
 int SetPlayerName(char*);
+int SetPlayerX(int);
+int SetPlayerY(int);
 int SetPokimonId(int, int);
 int SetPokimonName(int, char*);
 int SetPokimonLv(int, int);
@@ -67,6 +71,8 @@ int CreatePlayerData(char *name){
 
   player.id = id + 1;
   strcpy(player.name, name);
+  player.x = 1;
+  player.y = 1;
 
   for(i = 0; i < 6; i ++){
 
@@ -101,6 +107,24 @@ char GetPlayerName(void){
 
   if(IsLoaded)
     return *player.name;
+
+  return FAILED;
+
+}
+
+int GetPlayerX(void){
+
+  if(IsLoaded)
+    return player.x;
+
+  return FAILED;
+
+}
+
+int GetPlayerY(void){
+
+  if(IsLoaded)
+    return player.y;
 
   return FAILED;
 

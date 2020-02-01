@@ -2,8 +2,9 @@
 #include<stdlib.h>
 #include<conio.h>
 #include<windows.h>
+#include "playerdata.h"
 
-int x = 1, y = 1; //プレイヤー座標
+int x, y; //プレイヤー座標
 char map[25][101];
 FILE *map1;
 
@@ -17,9 +18,15 @@ int main(void){
   if((map1 = fopen("Map1.txt", "r")) == NULL){
 
     printf("【エラー: マップファイルが読み込めませんでした。】");
-    return 1;
+    return -1;
 
   }
+
+  if(LoadPlayerData(0) == -1)
+    CreatePlayerData("めろんくん");
+
+  x = GetPlayerX();
+  y = GetPlayerY();
 
   for(i = 0; i < 25; i ++){
 
@@ -46,13 +53,15 @@ int main(void){
 
     printf("\n\n\n\t\t\t\tO:プレイヤー S:スタート G:ゴール ESC:終了\n");
 
-    result = key();
+    do{
 
+      result = key();
+
+    }while(result == 2);
   }
 
-
-
   fclose(map1);
+  SavePlayerData();
 
   return 0;
 
@@ -60,7 +69,7 @@ int main(void){
 
 int key(void){
 
-  int in;
+  int in, result;
 
   in = getch();
 
@@ -68,7 +77,7 @@ int key(void){
     return 1;
 
   if(in != 0)
-    return 0;
+    return 2;
 
   in = getch();
 
@@ -76,29 +85,36 @@ int key(void){
 
     case 72:
 
-      playerMove(0, -1);
+      result = playerMove(0, -1);
 
       break;
 
     case 80:
 
-      playerMove(0, 1);
+      result = playerMove(0, 1);
 
       break;
 
     case 77:
 
-      playerMove(1, 0);
+      result = playerMove(1, 0);
 
       break;
 
     case 75:
 
-      playerMove(-1, 0);
+      result = playerMove(-1, 0);
 
       break;
 
+    default:
+
+      result = 1;
+
   }
+
+  if(result == 1)
+    return 2;
 
   return 0;
 
@@ -113,18 +129,13 @@ int playerMove(int changeX, int changeY){
 
       return 1;
 
-    case 'G':
-
-      system("cls");
-      printf("\n\n\n\n\n\t\t\t\t\t\tゴール！！\n");
-      getch();
-      system("cls");
-      exit(0);
-
   }
 
   x += changeX;
   y += changeY;
+
+  SetPlayerX(x);
+  SetPlayerY(y);
 
   return 0;
 
