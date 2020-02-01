@@ -19,6 +19,8 @@ static struct pokimons{
 static struct players{
   int id;
   char name[20];
+  int x;
+  int y;
   struct pokimons pokimon[6];
 }player;
 
@@ -56,7 +58,7 @@ int CreatePlayerData(char *name){
 
   do{
 
-    fseek(fp, i * 264L, SEEK_SET);
+    fseek(fp, i * 272L, SEEK_SET);
     i++;
 
   }while(fscanf(fp, "%5d", &id) != EOF);
@@ -171,10 +173,10 @@ int LoadPlayerData(int id){
   if((fp = fopen("players.txt", "r")) == NULL)
     return FAILED;
 
-  fseek(fp, id * 264L, SEEK_SET);
+  fseek(fp, id * 272L, SEEK_SET);
 
-  if(fscanf(fp, "%5d%20s%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d",
-    &player.id, player.name,
+  if(fscanf(fp, "%5d%20s%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d%5d%20s%5d%5d%5d%5d",
+    &player.id, player.name, &player.x, &player.y,
     &player.pokimon[0].id, player.pokimon[0].name, &player.pokimon[0].lv, &player.pokimon[0].atk, &player.pokimon[0].def, &player.pokimon[0].hp,
     &player.pokimon[1].id, player.pokimon[1].name, &player.pokimon[1].lv, &player.pokimon[1].atk, &player.pokimon[1].def, &player.pokimon[1].hp,
     &player.pokimon[2].id, player.pokimon[2].name, &player.pokimon[2].lv, &player.pokimon[2].atk, &player.pokimon[2].def, &player.pokimon[2].hp,
@@ -203,6 +205,8 @@ int PrintPlayerData(void){
 
   printf("ID: %d\n", player.id);
   printf("名前: %s\n", player.name);
+  printf("X座標: %d\n", player.x);
+  printf("Y座標: %d\n", player.y);
 
   for(i = 0; i < 6; i ++){
 
@@ -231,8 +235,8 @@ int SavePlayerData(void){
   if((fp = fopen("players.txt", "r+")) == NULL)
     return FAILED;
 
-  fseek(fp, player.id * 264L, SEEK_SET);
-  fprintf(fp, "%5d%20s", player.id, player.name);
+  fseek(fp, player.id * 272L, SEEK_SET);
+  fprintf(fp, "%5d%20s%5d%5d", player.id, player.name, player.x, player.y);
 
   for(i = 0; i < 6; i++)
     fprintf(fp, "%5d%20s%5d%5d%5d%5d",
@@ -267,6 +271,32 @@ int SetPlayerName(char *name){
   if(IsLoaded){
 
     strcpy(player.name, name);
+    return SUCCESS;
+
+  }
+
+  return FAILED;
+
+}
+
+int SetPlayerX(int x){
+
+  if(IsLoaded){
+
+    player.x = x;
+    return SUCCESS;
+
+  }
+
+  return FAILED;
+
+}
+
+int SetPlayerY(int y){
+
+  if(IsLoaded){
+
+    player.y = y;
     return SUCCESS;
 
   }
