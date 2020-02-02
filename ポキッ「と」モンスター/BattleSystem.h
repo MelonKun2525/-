@@ -1,22 +1,22 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
 //#include "playerdata.h"
 
-//ƒGƒ“ƒJƒEƒ“ƒg‚·‚é‚Ü‚Å‚ÌŠî€•à”
+//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã¾ã§ã®åŸºæº–æ­©æ•°
 #define STEPS 10
 
-/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
+/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
 int Encount(void);
 int BattleFadeOut(void);
 int BattleFadeIn(void);
-/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
+/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
 
-// Šm—¦‚ªŠO‚ê‚é‚²‚Æ‚É”’l‚ª‘‚¦‚Ä‚ ‚½‚è‚â‚·‚­‚·‚éB
+// ç¢ºç‡ãŒå¤–ã‚Œã‚‹ã”ã¨ã«æ•°å€¤ãŒå¢—ãˆã¦ã‚ãŸã‚Šã‚„ã™ãã™ã‚‹ã€‚
 static float enc_lv = 0.0;
 
-// Šm—¦ = 0~99‚Ì—”¶¬ € (Šî€•à” + ƒGƒ“ƒJƒEƒ“ƒgƒŒƒxƒ‹)
+// ç¢ºç‡ = 0~99ã®ä¹±æ•°ç”Ÿæˆ Ã· (åŸºæº–æ­©æ•° + ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¬ãƒ™ãƒ«)
 int Encount(void){
 
   int prob;

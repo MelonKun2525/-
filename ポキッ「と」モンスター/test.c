@@ -1,17 +1,17 @@
-#include "playerdata.h"
+Ôªø#include "playerdata.h"
 
 int main(void){
 
-  //CreatePlayerData("ÇﬂÇÎÇÒÇ≠ÇÒ");
+  //CreatePlayerData("„ÇÅ„Çç„Çì„Åè„Çì");
   //PrintPlayerData();
 
-  CreatePlayerData("ÇﬂÇÎÇÒÇ≠ÇÒ1");
-  CreatePlayerData("ÇﬂÇÎÇÒÇ≠ÇÒ2");
-  CreatePlayerData("ÇﬂÇÎÇÒÇ≠ÇÒ3");
+  CreatePlayerData("„ÇÅ„Çç„Çì„Åè„Çì1");
+  CreatePlayerData("„ÇÅ„Çç„Çì„Åè„Çì2");
+  CreatePlayerData("„ÇÅ„Çç„Çì„Åè„Çì3");
 
   LoadPlayerData(1);
   SetPokimonId(0, 0);
-  SetPokimonName(0, "ÉsÉJÉ`ÉÖÉE");
+  SetPokimonName(0, "„Éî„Ç´„ÉÅ„É•„Ç¶");
   SetPokimonLv(0, 1);
   SetPokimonAtk(0, 100);
   SetPokimonDef(0, 100);

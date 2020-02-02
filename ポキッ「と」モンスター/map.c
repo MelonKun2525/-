@@ -1,11 +1,11 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
 #include "playerdata.h"
 #include "BattleSystem.h"
 
-int x, y; //ƒvƒŒƒCƒ„[À•W
+int x, y; //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™
 char map[25][101];
 FILE *map1;
 
@@ -14,12 +14,12 @@ int playerMove(int, int);
 
 int main(void){
 
-  int i, j, chr, result = 0; //ƒVƒXƒeƒ€‚ÉŠÖ‚·‚é•Ï”
+  int i, j, chr, result = 0; //ã‚·ã‚¹ãƒ†ãƒ ã«é–¢ã™ã‚‹å¤‰æ•°
   char before[1] = {' '};
 
   if((map1 = fopen("Map1.txt", "r")) == NULL){
 
-    printf("yƒGƒ‰[: ƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ª“Ç‚İ‚ß‚Ü‚¹‚ñ‚Å‚µ‚½Bz");
+    printf("ã€ã‚¨ãƒ©ãƒ¼: ãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ãŒèª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚ã€‘");
     return -1;
 
   }
@@ -55,7 +55,7 @@ int main(void){
     for(i = 0; i < 25; i ++)
       printf("%s", map[i]);
 
-    printf("\n\n\n\t\t\t\tO:ƒvƒŒƒCƒ„[ S:ƒXƒ^[ƒg G:ƒS[ƒ‹ ESC:I—¹\n");
+    printf("\n\n\n\t\t\t\tO:ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ S:ã‚¹ã‚¿ãƒ¼ãƒˆ G:ã‚´ãƒ¼ãƒ« ESC:çµ‚äº†\n");
 
     do{
 
