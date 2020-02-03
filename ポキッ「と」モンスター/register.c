@@ -1,4 +1,4 @@
-ï»¿#include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
@@ -10,36 +10,36 @@ int main(void){
 
   if((fp = fopen("Pokimons.txt", "a")) == NULL){
 
-    printf("ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚\n");
+    printf("ƒtƒ@ƒCƒ‹‚ðŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B\n");
     exit(1);
 
   }
 
   fseek(fp, 54L, SEEK_SET);
-  printf("ãƒã‚­ãƒ¢ãƒ³ã‚’ç™»éŒ²ã—ã¾ã™ã€‚\n");
+  printf("ƒ|ƒLƒ‚ƒ“‚ð“o˜^‚µ‚Ü‚·B\n");
 
   while(1){
 
-    printf("ç™»éŒ²ã™ã‚‹ãƒã‚­ãƒ¢ãƒ³ã®åå‰ã‚’å…¥åŠ›(çµ‚äº†ã¯\"exit\")\n");
+    printf("“o˜^‚·‚éƒ|ƒLƒ‚ƒ“‚Ì–¼‘O‚ð“ü—Í(I—¹‚Í\"exit\")\n");
     printf(">");
     scanf("%s", name);
 
     if(strcmp(name, "exit") == 0)
       break;
 
-    printf("ã‚¿ã‚¤ãƒ—ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚(ã»ã®ãŠãƒ»ã¿ãšãƒ»ãã•)\n");
+    printf("ƒ^ƒCƒv‚ð“ü—Í‚µ‚Ä‰º‚³‚¢B(‚Ù‚Ì‚¨E‚Ý‚¸E‚­‚³)\n");
     printf(">");
     scanf("%s", type);
 
-    printf("æ”»æ’ƒåŠ›ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚\n");
+    printf("UŒ‚—Í‚ð“ü—Í‚µ‚Ä‰º‚³‚¢B\n");
     printf(">");
     scanf("%d", &atk);
 
-    printf("é˜²å¾¡åŠ›ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚\n");
+    printf("–hŒä—Í‚ð“ü—Í‚µ‚Ä‰º‚³‚¢B\n");
     printf(">");
     scanf("%d", &def);
 
-    printf("HPã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚\n");
+    printf("HP‚ð“ü—Í‚µ‚Ä‰º‚³‚¢B\n");
     printf(">");
     scanf("%d", &hp);
 
