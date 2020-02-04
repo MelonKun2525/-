@@ -1,93 +1,133 @@
-ï»¿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
-//#include "playerdata.h"
+#include <conio.h>
 
-//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã¾ã§ã®åŸºæº–æ­©æ•°
+//ƒGƒ“ƒJƒEƒ“ƒg‚·‚é‚Ü‚Å‚ÌŠî€•à”
 #define STEPS 10
 
-/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
+/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
 int Encount(void);
-int BattleFadeOut(void);
-int BattleFadeIn(void);
-/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
+int BattleFadeOut(int);
+int BattleFadeIn(int);
+int BattleTop(void);
+int BattleEscape(void);
+int ctoi(char);
+/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
 
-// ç¢ºç‡ãŒå¤–ã‚Œã‚‹ã”ã¨ã«æ•°å€¤ãŒå¢—ãˆã¦ã‚ãŸã‚Šã‚„ã™ãã™ã‚‹ã€‚
 static float enc_lv = 0.0;
+static char ui[25][101], display[25][101];
 
-// ç¢ºç‡ = 0~99ã®ä¹±æ•°ç”Ÿæˆ Ã· (åŸºæº–æ­©æ•° + ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¬ãƒ™ãƒ«)
 int Encount(void){
 
   int prob;
 
   srand((unsigned) time(NULL));
-  prob = (rand() % 100) / (STEPS + enc_lv);
+  // Šm—¦ = 0~99‚Ì—”¶¬ € (Šî€•à” + ƒGƒ“ƒJƒEƒ“ƒgƒŒƒxƒ‹)
+  prob = (rand() % 100) / STEPS;
+  prob = 0;
 
   if(prob == 0){
 
-    enc_lv = 0;
+    //enc_lv = 0;
     return 1;
 
   }else{
 
-    enc_lv += 0.5;
+    //enc_lv += 0.5;
     return 0;
 
   }
 }
 
-int BattleFadeIn(void){
+int BattleFadeIn(int mode){
 
   int i, j, k;
-  char effect1[25][101], effect2[25][101];
+  char effect[25][101];
   FILE *fp;
 
-  if((fp = fopen("BattleUI.txt", "r")) == NULL)
-    return -1;
+  if(mode == 0){
 
-  for(i = 0; i < 25; i++)
-    for(j = 0; j < 101; j++)
-      effect2[i][j] = ' ';
+    if((fp = fopen("BattleUI.txt", "r")) == NULL)
+      return -1;
 
-  system("cls");
+    for(i = 0; i < 25; i++)
+      fgets(effect[i], 101, fp);
 
-  for(i = 0; i < 25; i++)
-    fgets(effect1[i], 101, fp);
+    for(i = 0; i < 25; i++)
+      for(j = 0; j < 101; j++)
+        display[i][j] = ' ';
 
-  for(i = 0; i < 13; i++){
-
-    strcpy(effect2[12 - i], effect1[12 - i]);
-    strcpy(effect2[13 + i], effect1[13 + i]);
     system("cls");
 
-    for(k = 0; k < 25; k++)
-      printf("%s", effect2[k]);
+    for(i = 0; i < 13; i++){
 
-    Sleep(10);
+      strcpy(display[12 - i], effect[12 - i]);
+      strcpy(display[13 + i], effect[13 + i]);
+      system("cls");
+
+      for(k = 0; k < 25; k++)
+        printf("%s", display[k]);
+
+      Sleep(10);
+
+    }
+
+    for(i = 0; i < 25; i++)
+      strcpy(ui[i], display[i]);
 
   }
 
-  exit(0);
+  if(mode == 1){
+
+    if((fp = fopen("map1.txt", "r")) == NULL)
+      return -1;
+
+    for(i = 0; i < 25; i++)
+      for(j = 0; j < 101; j++)
+        display[i][j] = ' ';
+
+    for(i = 0; i < 25; i++)
+      fgets(effect[i], 101, fp);
+
+    for(i = 0; i < 13; i++){
+
+      strcpy(display[12 - i], effect[12 - i]);
+      strcpy(display[13 + i], effect[13 + i]);
+      system("cls");
+
+      for(k = 0; k < 25; k++)
+        printf("%s", display[k]);
+
+      Sleep(10);
+
+    }
+  }
+
+  return 0;
 
 }
 
-int BattleFadeOut(void){
+int BattleFadeOut(int mode){
 
   int i, j, k;
   FILE *fp;
-  char effect1[25][101];
 
-  if((fp = fopen("Bikkuri.txt", "r")) == NULL)
-    return -1;
+  if(mode == 0){
 
-  for(i = 0; i < 25; i++)
-    fgets(effect1[i], 101, fp);
+    if((fp = fopen("Bikkuri.txt", "r")) == NULL)
+      return -1;
+
+    for(i = 0; i < 25; i++)
+      fgets(display[i], 101, fp);
+
+  }
 
   system("cls");
 
   for(i = 0; i < 25; i++)
-    printf("%s", effect1[i]);
+    printf("%s", display[i]);
 
   Sleep(1000);
   system("cls");
@@ -96,13 +136,13 @@ int BattleFadeOut(void){
 
     for(j = 0; j < 99; j++){
 
-      effect1[i][j] = ' ';
-      effect1[24 - i][j] = ' ';
+      display[i][j] = ' ';
+      display[24 - i][j] = ' ';
 
     }
 
     for(k = 0; k < 25; k++)
-      printf("%s", effect1[k]);
+      printf("%s", display[k]);
 
     Sleep(10);
     system("cls");
@@ -111,4 +151,191 @@ int BattleFadeOut(void){
 
   return 0;
 
+}
+
+int BattleTop(void){
+
+  int i, j, k, in, num, update = 1, mode = 0;
+  char menu[7][17] = {
+    " ‚½‚½‚©‚¤        ",
+    " ‚à‚¿‚à‚Ì        ",
+    " ‚É‚°‚é          ",
+    "                 ",
+    "                 ",
+    "                 ",
+    "                 "
+  }, message[75] = "‚â‚¹‚¢‚Ìƒ|ƒLƒ‚ƒ“‚ª‚Æ‚Ñ‚¾‚µ‚Ä‚«‚½I                                         ";
+
+  while(1){
+
+    if(update == 1){
+
+      for(i = 0; i < 25; i++){
+
+        for(j = 0; j < 101; j++){
+
+          if(display[i][j] == '%'){
+
+            num = ctoi(display[i][j + 1]);
+
+            if(num < 7)
+              for(k = 0; k < 17; k++)
+                display[i][j + k] = menu[num][k];
+
+            else
+              for(k = 0; k < 75; k++)
+                display[i][j + k] = message[k];
+
+          }
+        }
+      }
+
+      display[2][2] = ' ';
+      display[5][2] = ' ';
+      display[8][2] = ' ';
+
+      switch(mode){
+
+        case 0:
+          display[2][2] = '>';
+          break;
+
+        case 1:
+          display[5][2] = '>';
+          break;
+
+        case 2:
+          display[8][2] = '>';
+          break;
+
+      }
+
+      system("cls");
+
+      for(i = 0; i < 25; i++)
+        printf("%s", display[i]);
+
+      update = 0;
+
+    }
+
+    in = getch();
+
+    if(in == 13){
+
+      if(mode == 2){
+
+        BattleEscape();
+        break;
+
+      }
+    }
+
+    if(in != 0)
+      continue;
+
+    in = getch();
+
+    if(in == 72 && mode > 0){
+
+      mode--;
+      update = 1;
+
+    }
+
+    if(in == 80 && mode < 2){
+
+      mode++;
+      update = 1;
+
+    }
+  }
+
+  return 0;
+
+}
+
+int BattleEscape(void){
+
+  int i, j, k, in, num;
+  char menu[7][17] = {
+    " ‚½‚½‚©‚¤        ",
+    " ‚à‚¿‚à‚Ì        ",
+    " ‚É‚°‚é          ",
+    "                 ",
+    "                 ",
+    "                 ",
+    "                 "
+  }, message[75] = "‚¤‚Ü‚­‚É‚°‚«‚é‚±‚Æ‚ª‚Å‚«‚½I                                               ";
+
+  system("cls");
+
+  for(i = 0; i < 25; i++){
+
+    for(j = 0; j < 101; j++){
+
+      if(ui[i][j] == '%'){
+
+        num = ctoi(ui[i][j + 1]);
+
+        if(num < 7)
+          for(k = 0; k < 17; k++)
+            display[i][j + k] = menu[num][k];
+
+        else
+          for(k = 0; k < 75; k++)
+            display[i][j + k] = message[k];
+
+      }
+    }
+  }
+
+  for(i = 0; i < 25; i++)
+    printf("%s", display[i]);
+
+  BattleFadeOut(1);
+  BattleFadeIn(1);
+
+  return 0;
+
+}
+
+int ctoi(char c){
+
+  switch(c){
+
+    case '0':
+      return 0;
+
+    case '1':
+      return 1;
+
+    case '2':
+      return 2;
+
+    case '3':
+      return 3;
+
+    case '4':
+      return 4;
+
+    case '5':
+      return 5;
+
+    case '6':
+      return 6;
+
+    case '7':
+      return 7;
+
+    case '8':
+      return 8;
+
+    case '9':
+      return 9;
+
+    default:
+      return -1;
+
+  }
 }
