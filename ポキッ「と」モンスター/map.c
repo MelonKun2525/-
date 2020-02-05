@@ -77,8 +77,12 @@ int key(void){
 
   in = getch();
 
-  if(in == 27)
+  if(in == 27){
+
+    system("cls");
     return 1;
+
+  }
 
   if(in != 0)
     return 2;

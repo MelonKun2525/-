@@ -4,17 +4,17 @@
 #include <windows.h>
 #include <conio.h>
 
-//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã¾ã§ã®åŸºæº–æ­©æ•°
+//ƒGƒ“ƒJƒEƒ“ƒg‚·‚é‚Ü‚Å‚ÌŠî€•à”
 #define STEPS 10
 
-/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
+/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
 int Encount(void);
 int BattleFadeOut(int);
 int BattleFadeIn(int);
 int BattleTop(void);
 int BattleEscape(void);
 int ctoi(char);
-/* ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
+/* ƒvƒƒgƒ^ƒCƒvéŒ¾ */
 
 float enc_lv = 0.0;
 char ui[25][101], display[25][101];
@@ -24,7 +24,7 @@ int Encount(void){
   int prob;
 
   srand((unsigned) time(NULL));
-  // ç¢ºç‡ = 0~99ã®ä¹±æ•°ç”Ÿæˆ Ã· (åŸºæº–æ­©æ•° + ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¬ãƒ™ãƒ«)
+  // Šm—¦ = 0~99‚Ì—”¶¬ € (Šî€•à” + ƒGƒ“ƒJƒEƒ“ƒgƒŒƒxƒ‹)
   prob = (rand() % 100) / STEPS;
   prob = 0;
 
@@ -157,14 +157,14 @@ int BattleTop(void){
 
   int i, j, k, in, num, update = 1, mode = 0;
   char menu[7][17] = {
-    " ãŸãŸã‹ã†        ",
-    " ã‚‚ã¡ã‚‚ã®        ",
-    " ã«ã’ã‚‹          ",
+    " ‚½‚½‚©‚¤        ",
+    " ‚à‚¿‚à‚Ì        ",
+    " ‚É‚°‚é          ",
     "                 ",
     "                 ",
     "                 ",
     "                 "
-  }, message[75] = "ã‚„ã›ã„ã®ãƒã‚­ãƒ¢ãƒ³ãŒã¨ã³ã ã—ã¦ããŸï¼                                         ";
+  }, message[75] = "‚â‚¹‚¢‚Ìƒ|ƒLƒ‚ƒ“‚ª‚Æ‚Ñ‚¾‚µ‚Ä‚«‚½I                                         ";
 
   while(1){
 
@@ -259,14 +259,14 @@ int BattleEscape(void){
 
   int i, j, k, in, num;
   char menu[7][17] = {
-    " ãŸãŸã‹ã†        ",
-    " ã‚‚ã¡ã‚‚ã®        ",
-    " ã«ã’ã‚‹          ",
+    " ‚½‚½‚©‚¤        ",
+    " ‚à‚¿‚à‚Ì        ",
+    " ‚É‚°‚é          ",
     "                 ",
     "                 ",
     "                 ",
     "                 "
-  }, message[75] = "ã†ã¾ãã«ã’ãã‚‹ã“ã¨ãŒã§ããŸï¼                                               ";
+  }, message[75] = "‚¤‚Ü‚­‚É‚°‚«‚é‚±‚Æ‚ª‚Å‚«‚½I                                               ";
 
   system("cls");
 
@@ -276,16 +276,31 @@ int BattleEscape(void){
 
       if(ui[i][j] == '%'){
 
-        num = ctoi(ui[i][j + 1]);
+        switch(ctoi(ui[i][j + 1])){
 
-        if(num < 7)
-          for(k = 0; k < 17; k++)
-            display[i][j + k] = menu[num][k];
+          case 0:
 
-        else
-          for(k = 0; k < 75; k++)
-            display[i][j + k] = message[k];
+            for(k = 0; k < 17; k++)
+              display[i][j + k] = menu[ctoi(ui[i][j + 2])][k];
 
+            break;
+
+          case 1:
+
+            for(k = 0; k < 75; k++)
+              display[i][j + k] = message[k];
+
+            break;
+
+          case 2:
+          case 3:
+
+            for(k = 0; k < 3; k++)
+              display[i][j + k] = '   ';
+
+            break;
+
+        }
       }
     }
   }

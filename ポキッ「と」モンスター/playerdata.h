@@ -53,19 +53,30 @@ int SetPokimonHp(int, int);
 
 int CreatePlayerData(char *name){
 
-  int id = -1, i = 0;
-  char dummy[1];
+  int id, result, i = 0;
+  char dummy[1], name2[20];
   FILE *fp;
 
   if((fp = fopen("players.txt", "r")) == NULL)
     return FAILED;
 
-  do{
+  while(1){
 
     fseek(fp, i * 272L, SEEK_SET);
     i++;
+    result = fscanf(fp, "%5d%20s", &id, name2);
 
-  }while(fscanf(fp, "%5d", &id) != EOF);
+    if(result == EOF){
+
+			id = -1;
+    	break;
+
+    }
+
+    if(strcmp(name, name2) == 0)
+    	return FAILED;
+
+  }
 
   fclose(fp);
 
