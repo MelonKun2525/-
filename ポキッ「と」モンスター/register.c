@@ -1,35 +1,33 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include "Pokimon.h"
 
 int main(void){
 
-  int atk, def, hp;
-  char name[20], type[20];
-  FILE *fp;
+  int id, type, atk, def, hp, sp;
+  char name[20];
 
-  if((fp = fopen("Pokimons.txt", "a")) == NULL){
-
-    printf("ファイルを開くことができませんでした。\n");
-    exit(1);
-
-  }
-
-  fseek(fp, 54L, SEEK_SET);
   printf("ポキモンを登録します。\n");
 
   while(1){
 
-    printf("登録するポキモンの名前を入力(終了は\"exit\")\n");
+    printf("IDを入力(終了は -1)\n");
+    printf(">");
+    scanf("%d", &id);
+
+    if(id == -1)
+      break;
+
+    printf("名前を入力\n");
     printf(">");
     scanf("%s", name);
 
-    if(strcmp(name, "exit") == 0)
-      break;
+    do{
 
-    printf("タイプを入力して下さい。(ほのお・みず・くさ)\n");
-    printf(">");
-    scanf("%s", type);
+      printf("タイプを入力して下さい。(ほのお：0 みず：1 くさ：2)\n");
+      printf(">");
+      scanf("%d", &type);
+
+    }while(type < 0 || type > 2);
 
     printf("攻撃力を入力して下さい。\n");
     printf(">");
@@ -43,13 +41,20 @@ int main(void){
     printf(">");
     scanf("%d", &hp);
 
-    fprintf(fp, "%20s%20s%5d%5d%5d\n", name, type, atk, def, hp);
+    printf("すばやさを入力して下さい。\n");
+    printf(">");
+    scanf("%d", &sp);
+
+    if(CreatePokimon(id, name, type, atk, def, hp, sp) == -1){
+
+      printf("ポキモンの作成中にエラーが発生しました。");
+      return -1;
+
+    }
 
     printf("\n\n\n----------\n\n\n");
 
   }
-
-  fclose(fp);
 
   return 0;
 
